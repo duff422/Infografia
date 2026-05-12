@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Física de la Radiación – Análisis Conceptual</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark:    #fdfdfd;
+    --bg-card:    #091826;
+    --bg-card2:   #0b1f30;
+    --teal:       #00c8b0;
+    --teal-dim:   #fdffff;
+    --green:      #7ec728;
+    --yellow:     #f5c518;
+    --orange:     #f07b00;
+    --red:        #e83a3a;
+    --text:       #d8eaf5;
+    --text-dim:   #7aadca;
+    --border:     rgba(0,200,176,0.25);
+    --glow:       0 0 18px rgba(0,200,176,0.35);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg-dark);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, #00433d 0%, #091826 60%);
+    border-bottom: 3px solid var(--teal);
+    padding: 28px 40px 20px;
+    display: flex; align-items: center; gap: 30px;
+    position: relative; overflow: hidden;
+  }
+  header::before {
+    content:'';
+    position:absolute; inset:0;
+    background: repeating-linear-gradient(
+      90deg, transparent, transparent 60px,
+      rgba(0,200,176,0.04) 60px, rgba(0,200,176,0.04) 61px
+    ),repeating-linear-gradient(
+      0deg, transparent, transparent 60px,
+      rgba(0,200,176,0.04) 60px, rgba(0,200,176,0.04) 61px
+    );
+  }
+  .header-badge {
+    background: var(--teal);
+    color: #05141d;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px; font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 4px;
+    text-transform: uppercase; letter-spacing: 2px;
+    white-space: nowrap;
+  }
+  .header-text h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 900; color: #fff;
+    text-transform: uppercase; letter-spacing: 3px;
+  }
+  .header-text h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(13px, 1.8vw, 18px);
+    font-weight: 400; color: var(--teal);
+    letter-spacing: 5px; text-transform: uppercase; margin-top: 4px;
+  }
+  .header-label {
+    margin-left: auto;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px; color: var(--teal-dim);
+    text-align: right; letter-spacing: 2px;
+  }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 1200px; margin: 0 auto; padding: 30px 24px 50px; }
+
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px; font-weight: 700;
+    color: var(--teal);
+    text-transform: uppercase; letter-spacing: 4px;
+    border-left: 4px solid var(--teal);
+    padding-left: 14px; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-title .num {
+    background: var(--teal);
+    color: #05141d;
+    font-size: 12px; font-weight: 900;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 22px;
+    position: relative;
+  }
+  .card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal), transparent);
+    border-radius: 8px 8px 0 0;
+  }
+  .card-green::before { background: linear-gradient(90deg, var(--green), transparent); }
+  .card-yellow::before { background: linear-gradient(90deg, var(--yellow), transparent); }
+  .card-orange::before { background: linear-gradient(90deg, var(--orange), transparent); }
+  .card-red::before { background: linear-gradient(90deg, var(--red), transparent); }
+
+  .card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px; font-weight: 700;
+    color: var(--teal); letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .card-green h3 { color: var(--green); }
+  .card-yellow h3 { color: var(--yellow); }
+  .card-orange h3 { color: var(--orange); }
+  .card-red h3 { color: var(--red); }
+
+  .q-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--teal-dim);
+    display: block; margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  .q-text {
+    font-size: 13px; font-weight: 600;
+    color: var(--text-dim);
+    margin-bottom: 8px; font-style: italic;
+  }
+  .answer {
+    font-size: 14px; color: var(--text);
+    border-left: 2px solid rgba(0,200,176,0.3);
+    padding-left: 10px; margin-bottom: 16px;
+  }
+  .answer:last-child { margin-bottom: 0; }
+  .answer b { color: var(--teal); }
+
+  /* equations */
+  .eq-box {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--teal-dim);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 15px;
+    color: var(--yellow);
+    text-align: center;
+    margin: 10px 0;
+    box-shadow: var(--glow);
+    letter-spacing: 2px;
+  }
+  .eq-small {
+    font-size: 13px;
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--yellow);
+    background: rgba(0,0,0,0.35);
+    border-radius: 4px;
+    padding: 3px 8px;
+    display: inline-block;
+    margin: 0 2px;
+  }
+
+  /* highlight chip */
+  .chip {
+    display: inline-block;
+    background: rgba(0,200,176,0.12);
+    border: 1px solid var(--teal-dim);
+    color: var(--teal);
+    font-size: 12px; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px;
+    margin: 3px 2px;
+    font-family: 'Rajdhani', sans-serif; letter-spacing: 1px;
+  }
+  .chip-green { background: rgba(126,199,40,0.12); border-color: var(--green); color: var(--green); }
+  .chip-yellow { background: rgba(245,197,24,0.12); border-color: var(--yellow); color: var(--yellow); }
+  .chip-red { background: rgba(232,58,58,0.12); border-color: var(--red); color: var(--red); }
+  .chip-orange { background: rgba(240,123,0,0.12); border-color: var(--orange); color: var(--orange); }
+
+  /* divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    margin: 26px 0;
+    opacity: 0.3;
+  }
+
+  /* spectrum bar */
+  .spectrum-row { display: flex; align-items: stretch; margin: 14px 0; gap: 3px; }
+  .spec-seg {
+    flex: 1; text-align: center;
+    padding: 10px 6px 8px;
+    border-radius: 5px;
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    line-height: 1.3;
+  }
+
+  /* compare table */
+  .cmp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .cmp-table th {
+    background: rgba(0,200,176,0.15);
+    color: var(--teal);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px; letter-spacing: 2px;
+    padding: 9px 12px; text-align: left;
+    border-bottom: 2px solid var(--teal-dim);
+  }
+  .cmp-table td { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .cmp-table tr:last-child td { border-bottom: none; }
+  .cmp-table tr:hover td { background: rgba(0,200,176,0.06); }
+
+  /* wide card */
+  .wide-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px 26px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .wide-card::before {
+    content:''; position:absolute;
+    top:0; left:0; right:0; height:3px;
+    background: linear-gradient(90deg, var(--teal), var(--green), transparent);
+    border-radius:8px 8px 0 0;
+  }
+
+  /* footer */
+  footer {
+    border-top: 2px solid var(--teal-dim);
+    background: #060f17;
+    padding: 18px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--text-dim);
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 1px;
+  }
+
+  /* SVG diagram containers */
+  .diag { width: 100%; margin: 12px 0; }
+
+  .tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--teal-dim);
+    opacity: 0.7;
+  }
+
+  @media (max-width: 750px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    header { flex-direction: column; align-items: flex-start; }
+    .header-label { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<header>
+  <div class="header-badge">Parte A</div>
+  <div class="header-text">
+    <h1>Física de la Radiación</h1>
+    <h2>Análisis Conceptual · Interacción con la Materia</h2>
+  </div>
+  <div class="header-label">
+    INFOGRAFÍA Nº 1<br>
+    <span style="color:var(--green)">ANÁLISIS CONCEPTUAL</span>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 1 · ENERGÍA DEL FOTÓN
+  ══════════════════════════════════════ -->
+  <div class="section-title">
+    <div class="num">1</div>
+    ENERGÍA DEL FOTÓN
+  </div>
+
+  <!-- Espectro EM -->
+  <div class="wide-card">
+    <h3 style="font-family:'Orbitron',sans-serif; font-size:11px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:14px;">Espectro Electromagnético – Frecuencia y Energía</h3>
+    <div class="spectrum-row">
+      <div class="spec-seg" style="background:rgba(80,0,180,0.35); color:#c49fff; flex:1.5">Ondas<br>Radio<br><span style="color:#c49fff; font-weight:400; font-size:10px">~kHz</span></div>
+      <div class="spec-seg" style="background:rgba(0,80,200,0.35); color:#70b8ff">Microondas<br><span style="font-weight:400; font-size:10px">~GHz</span></div>
+      <div class="spec-seg" style="background:rgba(0,160,80,0.35); color:#70ffb0">Infra-<br>rrojo<br><span style="font-weight:400; font-size:10px">~THz</span></div>
+      <div class="spec-seg" style="background:linear-gradient(90deg,#8B00FF,#FF7700); color:#fff; flex:0.7">Luz<br>Vis.</div>
+      <div class="spec-seg" style="background:rgba(200,180,0,0.35); color:#f5d830">Ultra-<br>violeta<br><span style="font-weight:400; font-size:10px">~PHz</span></div>
+      <div class="spec-seg" style="background:rgba(0,200,180,0.3); color:var(--teal); border:1px solid var(--teal)">Rayos<br>X<br><span style="font-weight:400; font-size:10px">~EHz</span></div>
+      <div class="spec-seg" style="background:rgba(232,58,58,0.3); color:var(--red); border:1px solid var(--red)">Rayos<br>γ<br><span style="font-weight:400; font-size:10px">&gt;EHz</span></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-top:6px; font-size:11px; color:var(--text-dim); font-family:'Share Tech Mono',monospace; padding: 0 4px;">
+      <span>← MENOR FRECUENCIA · MENOR ENERGÍA</span>
+      <span style="color:var(--red)">MAYOR FRECUENCIA · MAYOR ENERGÍA →</span>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-top:4px; font-size:11px; padding: 0 4px;">
+      <span class="chip">NO IONIZANTE</span>
+      <span style="font-size:18px; color:var(--text-dim); align-self:center;">⟶</span>
+      <span class="chip-red">IONIZANTE</span>
+    </div>
+  </div>
+
+  <div class="grid-3">
+
+    <!-- Q1 -->
+    <div class="card">
+      <h3>Pregunta 1</h3>
+      <span class="q-label">[ FRECUENCIA vs. ENERGÍA ]</span>
+      <p class="q-text">¿Qué ocurre con la energía del fotón al aumentar la frecuencia?</p>
+      <div class="eq-box">E = h · f</div>
+      <div class="answer">
+        La energía del fotón es <b>directamente proporcional</b> a su frecuencia. Al duplicar la frecuencia, la energía se duplica.<br><br>
+        Con la constante de Planck <span class="eq-small">h = 6.626 × 10⁻³⁴ J·s</span>, un fotón de rayos X a 10¹⁸ Hz posee una energía de ≈ 4 keV, mientras que un fotón de radio a 10⁶ Hz posee tan solo ≈ 4 neV. La diferencia es de <b>13 órdenes de magnitud</b>.
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="card card-green">
+      <h3>Pregunta 2</h3>
+      <span class="q-label">[ FRECUENCIA vs. LONGITUD DE ONDA ]</span>
+      <p class="q-text">¿Qué relación existe entre frecuencia y longitud de onda?</p>
+      <div class="eq-box">c = λ · f &nbsp;→&nbsp; λ = c / f</div>
+      <div class="answer">
+        La relación es <b>inversamente proporcional</b>. Al ser la velocidad de la luz <span class="eq-small">c = 3 × 10⁸ m/s</span> constante en el vacío, al aumentar la frecuencia <i>f</i>, la longitud de onda λ disminuye.<br><br>
+        Combinando ambas ecuaciones: <span class="eq-small">E = hc/λ</span>. Así, <b>menor longitud de onda = mayor energía</b> y mayor capacidad ionizante.
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="card card-yellow">
+      <h3>Pregunta 3</h3>
+      <span class="q-label">[ IONIZACIÓN ]</span>
+      <p class="q-text">¿Por qué los rayos X son ionizantes y un celular no?</p>
+      <div class="answer">
+        Para ionizar un átomo se requiere superar su <b>energía de ionización</b> (típicamente > 10 eV).<br><br>
+        <span class="chip">Celular (~1 GHz)</span> → E ≈ 4 × 10⁻⁶ eV — <b>10 millones de veces insuficiente</b> para ionizar. Solo genera calor leve por absorción.<br><br>
+        <span class="chip-red">Rayos X (~10¹⁸ Hz)</span> → E ≈ 1–100 keV — <b>energía más que suficiente</b> para expulsar electrones de átomos, romper enlaces químicos y dañar el ADN.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 2 · ATENUACIÓN
+  ══════════════════════════════════════ -->
+  <div class="section-title">
+    <div class="num">2</div>
+    ATENUACIÓN DE RADIACIÓN
+  </div>
+
+  <div class="wide-card" style="margin-bottom:20px;">
+    <!-- SVG: Attenuation diagram -->
+    <h3 style="font-family:'Orbitron',sans-serif; font-size:11px; color:var(--orange); letter-spacing:3px; text-transform:uppercase; margin-bottom:14px;">Ley de Lambert–Beer · Atenuación Exponencial</h3>
+    <svg class="diag" viewBox="0 0 700 140" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="beamGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#00c8b0; stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#00c8b0; stop-opacity:0.1"/>
+        </linearGradient>
+        <linearGradient id="matGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#1a3a50; stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#1a3a50; stop-opacity:0.9"/>
+        </linearGradient>
+      </defs>
+      <!-- source -->
+      <circle cx="40" cy="70" r="18" fill="#00433d" stroke="#00c8b0" stroke-width="2"/>
+      <text x="40" y="68" text-anchor="middle" fill="#00c8b0" font-size="10" font-family="Share Tech Mono">hf</text>
+      <text x="40" y="80" text-anchor="middle" fill="#00c8b0" font-size="9" font-family="Share Tech Mono">I₀</text>
+      <!-- beam in -->
+      <rect x="58" y="62" width="100" height="16" rx="2" fill="url(#beamGrad)" opacity="0.9"/>
+      <text x="108" y="56" text-anchor="middle" fill="#7aadca" font-size="10" font-family="Share Tech Mono">Haz incidente I₀</text>
+      <!-- material block -->
+      <rect x="158" y="20" width="180" height="100" rx="4" fill="url(#matGrad)" stroke="#1e5070" stroke-width="1.5"/>
+      <text x="248" y="50" text-anchor="middle" fill="#7aadca" font-size="10" font-family="Share Tech Mono">MATERIAL</text>
+      <text x="248" y="68" text-anchor="middle" fill="#f5c518" font-size="11" font-family="Share Tech Mono">μ = coef. aten.</text>
+      <text x="248" y="84" text-anchor="middle" fill="#7aadca" font-size="10" font-family="Share Tech Mono">espesor x →</text>
+      <!-- arrows showing scattering -->
+      <line x1="210" y1="60" x2="195" y2="30" stroke="#e83a3a" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#arr-red)"/>
+      <line x1="248" y1="65" x2="260" y2="22" stroke="#e83a3a" stroke-width="1.2" stroke-dasharray="3,2"/>
+      <line x1="280" y1="70" x2="298" y2="105" stroke="#e83a3a" stroke-width="1.2" stroke-dasharray="3,2"/>
+      <text x="175" y="17" fill="#e83a3a" font-size="9" font-family="Share Tech Mono">dispersión/absorción</text>
+      <!-- beam out attenuated -->
+      <rect x="338" y="62" width="80" height="16" rx="2" fill="#00c8b0" opacity="0.35"/>
+      <text x="378" y="56" text-anchor="middle" fill="#7aadca" font-size="10" font-family="Share Tech Mono">I(x) transmitida</text>
+      <!-- label equation -->
+      <rect x="430" y="30" width="240" height="80" rx="6" fill="rgba(0,0,0,0.5)" stroke="rgba(0,200,176,0.4)" stroke-width="1"/>
+      <text x="550" y="58" text-anchor="middle" fill="#f5c518" font-size="16" font-family="Share Tech Mono">I(x) = I₀ e⁻ᵘˣ</text>
+      <text x="550" y="80" text-anchor="middle" fill="#7aadca" font-size="10" font-family="Share Tech Mono">μ: coef. atenuación lineal (cm⁻¹)</text>
+      <text x="550" y="96" text-anchor="middle" fill="#7aadca" font-size="10" font-family="Share Tech Mono">x: espesor del material (cm)</text>
+      <!-- x axis label -->
+      <line x1="158" y1="128" x2="338" y2="128" stroke="#00c8b0" stroke-width="1" marker-end="url(#arr)"/>
+      <text x="248" y="140" text-anchor="middle" fill="#00c8b0" font-size="10" font-family="Share Tech Mono">x</text>
+      <defs>
+        <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#00c8b0"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="grid-3">
+
+    <div class="card card-orange">
+      <h3>Pregunta 1</h3>
+      <span class="q-label">[ COEFICIENTE μ ]</span>
+      <p class="q-text">¿Qué representa el coeficiente de atenuación μ?</p>
+      <div class="answer">
+        μ representa la <b>probabilidad de interacción por unidad de longitud</b> que tiene un fotón al atravesar un material. Sus unidades son cm⁻¹.<br><br>
+        Un μ alto significa que el material absorbe o dispersa gran parte de la radiación en distancias cortas. Depende del <b>número atómico Z</b>, la <b>densidad</b> del material y la <b>energía del fotón</b>.
+      </div>
+      <div class="eq-box">HVL = ln 2 / μ</div>
+      <div style="font-size:12px; color:var(--text-dim); margin-top:6px">La capa hemirreductora (HVL) es el espesor que reduce I a la mitad.</div>
+    </div>
+
+    <div class="card card-red">
+      <h3>Pregunta 2</h3>
+      <span class="q-label">[ PLOMO vs. TEJIDO BLANDO ]</span>
+      <p class="q-text">¿Por qué el plomo atenúa más radiación que el tejido blando?</p>
+      <div class="answer">
+        El plomo (Pb) tiene <b>Z = 82</b> y densidad 11.34 g/cm³. El tejido blando (agua ≈ carbono) tiene Z ≈ 7–8 y densidad ≈ 1 g/cm³.<br><br>
+        El <b>efecto fotoeléctrico</b> escala con Z³, por lo que el plomo tiene una probabilidad ~(82/8)³ ≈ 1000 veces mayor de absorber fotones por unidad de masa. Su μ es órdenes de magnitud superior, lo que lo convierte en escudo ideal.
+      </div>
+      <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap">
+        <span class="chip-orange">Pb: μ ≈ 60 cm⁻¹ (@100 keV)</span>
+        <span class="chip">Tejido: μ ≈ 0.16 cm⁻¹</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Pregunta 3</h3>
+      <span class="q-label">[ RADIOGRAFÍA ÓSEA ]</span>
+      <p class="q-text">¿Por qué el hueso aparece más brillante en una radiografía?</p>
+      <div class="answer">
+        El hueso contiene <b>calcio (Ca, Z = 20)</b> y fósforo, elementos de mayor número atómico que los del tejido blando (C, H, N, O). Esto le otorga un μ mucho mayor.<br><br>
+        Al atenuar más los rayos X, <b>llegan menos fotones</b> al detector/película en las zonas de hueso → menor exposición → zona más <b>clara/blanca</b>. El tejido blando deja pasar más fotones → zona más oscura.
+      </div>
+      <!-- mini x-ray diagram -->
+      <svg viewBox="0 0 200 80" style="width:100%; margin-top:10px">
+        <rect x="0" y="0" width="200" height="80" fill="rgba(0,0,0,0.3)" rx="4"/>
+        <!-- beam arrows -->
+        <line x1="20" y1="10" x2="20" y2="60" stroke="#00c8b0" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="50" y1="10" x2="50" y2="60" stroke="#00c8b0" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="90" y1="10" x2="90" y2="55" stroke="#00c8b0" stroke-width="1.5" marker-end="url(#ar2)"/>
+        <line x1="130" y1="10" x2="130" y2="55" stroke="#00c8b0" stroke-width="1.5" marker-end="url(#ar2)"/>
+        <line x1="165" y1="10" x2="165" y2="60" stroke="#00c8b0" stroke-width="2" marker-end="url(#ar2)"/>
+        <line x1="185" y1="10" x2="185" y2="60" stroke="#00c8b0" stroke-width="2" marker-end="url(#ar2)"/>
+        <!-- bone -->
+        <ellipse cx="110" cy="30" rx="40" ry="22" fill="#1d3a52" stroke="#7aadca" stroke-width="1"/>
+        <text x="110" y="34" text-anchor="middle" fill="#7aadca" font-size="9" font-family="Share Tech Mono">HUESO</text>
+        <!-- film -->
+        <rect x="5" y="65" width="190" height="12" rx="2" fill="#101">
+          <title>Película</title>
+        </rect>
+        <rect x="5" y="65" width="30" height="12" rx="2" fill="#303" opacity="0.8"/>
+        <rect x="175" y="65" width="20" height="12" rx="2" fill="#303" opacity="0.8"/>
+        <rect x="70" y="65" width="80" height="12" rx="2" fill="#ccc" opacity="0.85"/>
+        <text x="110" y="74" text-anchor="middle" fill="#333" font-size="7" font-family="Share Tech Mono">BLANCO</text>
+        <text x="30" y="74" text-anchor="middle" fill="#0f0" font-size="7" font-family="Share Tech Mono">OSCURO</text>
+        <defs>
+          <marker id="ar2" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto">
+            <path d="M0,0 L5,2.5 L0,5 Z" fill="#00c8b0"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 3 · INTERACCIÓN RADIACIÓN–MATERIA
+  ══════════════════════════════════════ -->
+  <div class="section-title">
+    <div class="num">3</div>
+    INTERACCIÓN RADIACIÓN–MATERIA
+  </div>
+
+  <!-- Three mechanisms side by side -->
+  <div class="grid-3" style="margin-bottom:20px;">
+
+    <!-- Efecto fotoeléctrico -->
+    <div class="card">
+      <h3>Efecto Fotoeléctrico</h3>
+      <svg viewBox="0 0 200 130" style="width:100%; margin-bottom:10px">
+        <!-- atom -->
+        <circle cx="100" cy="65" r="14" fill="#091826" stroke="#00c8b0" stroke-width="1.5"/>
+        <text x="100" y="69" text-anchor="middle" fill="#00c8b0" font-size="10" font-family="Share Tech Mono">+</text>
+        <!-- orbits -->
+        <ellipse cx="100" cy="65" rx="35" ry="20" fill="none" stroke="#7aadca" stroke-width="0.8" stroke-dasharray="4,3" transform="rotate(-20,100,65)"/>
+        <ellipse cx="100" cy="65" rx="55" ry="28" fill="none" stroke="#7aadca" stroke-width="0.8" stroke-dasharray="4,3" transform="rotate(15,100,65)"/>
+        <!-- photon in -->
+        <line x1="10" y1="65" x2="58" y2="65" stroke="#f5c518" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr-y)"/>
+        <text x="20" y="58" fill="#f5c518" font-size="9" font-family="Share Tech Mono">γ (hf)</text>
+        <!-- electron out -->
+        <circle cx="148" cy="38" r="5" fill="#e83a3a"/>
+        <line x1="85" y1="50" x2="143" y2="40" stroke="#e83a3a" stroke-width="1.5" marker-end="url(#arr-r)"/>
+        <text x="150" y="30" fill="#e83a3a" font-size="9" font-family="Share Tech Mono">e⁻ expulsado</text>
+        <!-- vacancy -->
+        <circle cx="68" cy="58" r="4" fill="none" stroke="#7aadca" stroke-width="1" stroke-dasharray="2,1"/>
+        <defs>
+          <marker id="arr-y" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#f5c518"/></marker>
+          <marker id="arr-r" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#e83a3a"/></marker>
+        </defs>
+        <!-- label -->
+        <text x="100" y="118" text-anchor="middle" fill="#7aadca" font-size="9" font-family="Share Tech Mono">El fotón desaparece</text>
+      </svg>
+      <span class="q-label">[ PREGUNTA 1 ]</span>
+      <p class="q-text">¿Qué ocurre físicamente?</p>
+      <div class="answer">
+        El fotón incidente es <b>completamente absorbido</b> por un electrón de una capa interna del átomo. Toda la energía se transfiere al electrón, que es expulsado con energía cinética:<br>
+        <span class="eq-small">Ec = hf − Φ</span><br>
+        donde Φ es la energía de ligadura. Domina a <b>bajas energías</b> y en materiales con <b>alto Z</b>. El fotón deja de existir.
+      </div>
+    </div>
+
+    <!-- Dispersión Compton -->
+    <div class="card card-green">
+      <h3>Dispersión Compton</h3>
+      <svg viewBox="0 0 200 130" style="width:100%; margin-bottom:10px">
+        <!-- photon in -->
+        <line x1="10" y1="65" x2="78" y2="65" stroke="#f5c518" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr-y2)"/>
+        <text x="30" y="57" fill="#f5c518" font-size="9" font-family="Share Tech Mono">γ (hf)</text>
+        <!-- interaction point -->
+        <circle cx="90" cy="65" r="7" fill="#7ec728" opacity="0.8"/>
+        <!-- scattered photon -->
+        <line x1="97" y1="60" x2="175" y2="20" stroke="#f5c518" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr-y2)"/>
+        <text x="155" y="14" fill="#f5c518" font-size="9" font-family="Share Tech Mono">γ' (hf'&lt;hf)</text>
+        <!-- recoil electron -->
+        <line x1="97" y1="70" x2="175" y2="105" stroke="#e83a3a" stroke-width="1.5" marker-end="url(#arr-r2)"/>
+        <circle cx="178" cy="107" r="5" fill="#e83a3a"/>
+        <text x="140" y="122" fill="#e83a3a" font-size="9" font-family="Share Tech Mono">e⁻ retroceso</text>
+        <!-- angle -->
+        <path d="M90,65 A20,20 0 0,0 110,65" fill="none" stroke="#7aadca" stroke-width="1" stroke-dasharray="2,1"/>
+        <text x="116" y="63" fill="#7aadca" font-size="9" font-family="Share Tech Mono">θ</text>
+        <defs>
+          <marker id="arr-y2" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#f5c518"/></marker>
+          <marker id="arr-r2" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#e83a3a"/></marker>
+        </defs>
+        <text x="100" y="118" text-anchor="middle" fill="#7aadca" font-size="9" font-family="Share Tech Mono">Fotón secundario desviado</text>
+      </svg>
+      <span class="q-label">[ PREGUNTA 2 ]</span>
+      <p class="q-text">¿Por qué afecta la calidad de imagen radiográfica?</p>
+      <div class="answer">
+        El fotón dispersado no viaja en la dirección original sino en ángulo θ, llegando al detector en posiciones <b>incorrectas</b>. Esto genera un <b>fondo difuso (ruido)</b> que reduce el contraste y la nitidez de la imagen. En TAC se usan grillas antidispersión para minimizar este efecto.
+      </div>
+    </div>
+
+    <!-- Producción de pares -->
+    <div class="card card-yellow">
+      <h3>Producción de Pares</h3>
+      <svg viewBox="0 0 200 130" style="width:100%; margin-bottom:10px">
+        <!-- nucleus -->
+        <circle cx="100" cy="65" r="16" fill="#2a2000" stroke="#f5c518" stroke-width="1.5"/>
+        <text x="100" y="69" text-anchor="middle" fill="#f5c518" font-size="9" font-family="Share Tech Mono">núcleo</text>
+        <!-- photon in -->
+        <line x1="10" y1="65" x2="76" y2="65" stroke="#f07b00" stroke-width="2.5" marker-end="url(#arr-o)"/>
+        <text x="28" y="57" fill="#f07b00" font-size="9" font-family="Share Tech Mono">γ ≥1.022MeV</text>
+        <!-- electron out -->
+        <line x1="116" y1="55" x2="185" y2="25" stroke="#e83a3a" stroke-width="1.5" marker-end="url(#arr-r3)"/>
+        <circle cx="187" cy="23" r="5" fill="#e83a3a"/>
+        <text x="155" y="15" fill="#e83a3a" font-size="9" font-family="Share Tech Mono">e⁻</text>
+        <!-- positron out -->
+        <line x1="116" y1="75" x2="185" y2="105" stroke="#7ec728" stroke-width="1.5" marker-end="url(#arr-g)"/>
+        <circle cx="187" cy="107" r="5" fill="#7ec728"/>
+        <text x="155" y="120" fill="#7ec728" font-size="9" font-family="Share Tech Mono">e⁺ (positrón)</text>
+        <defs>
+          <marker id="arr-o" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#f07b00"/></marker>
+          <marker id="arr-r3" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#e83a3a"/></marker>
+          <marker id="arr-g" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#7ec728"/></marker>
+        </defs>
+        <text x="100" y="118" text-anchor="middle" fill="#7aadca" font-size="9" font-family="Share Tech Mono">E = mc²× 2 mínimo</text>
+      </svg>
+      <span class="q-label">[ PREGUNTA 3 ]</span>
+      <p class="q-text">¿Por qué requiere energías altas?</p>
+      <div class="answer">
+        Para crear un par electrón–positrón, el fotón debe aportar energía suficiente para materializar la masa en reposo de ambas partículas:<br>
+        <span class="eq-small">E_mín = 2m_e c² = 2 × 0.511 MeV = 1.022 MeV</span><br>
+        Ningún fotón de menor energía puede crear materia. Esta es la verificación directa de <b>E = mc²</b> de Einstein.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Tabla comparativa mecanismos -->
+  <div class="wide-card">
+    <h3 style="font-family:'Orbitron',sans-serif; font-size:11px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:14px;">Comparativa de Mecanismos de Interacción</h3>
+    <table class="cmp-table">
+      <thead>
+        <tr>
+          <th>Mecanismo</th>
+          <th>Rango de Energía</th>
+          <th>Proceso</th>
+          <th>Domina en Z</th>
+          <th>Aplicación médica</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--teal); font-weight:700">Efecto Fotoeléctrico</td>
+          <td>1 keV – 100 keV</td>
+          <td>Absorción total del fotón, expulsión de e⁻</td>
+          <td>Alto (hueso, Pb)</td>
+          <td>Radiografía diagnóstica, contraste</td>
+        </tr>
+        <tr>
+          <td style="color:var(--green); font-weight:700">Dispersión Compton</td>
+          <td>100 keV – 10 MeV</td>
+          <td>Fotón dispersado + e⁻ de retroceso</td>
+          <td>Bajo (tejido blando)</td>
+          <td>TAC, radioterapia</td>
+        </tr>
+        <tr>
+          <td style="color:var(--yellow); font-weight:700">Producción de Pares</td>
+          <td>&gt; 1.022 MeV</td>
+          <td>Fotón → e⁻ + e⁺ (cerca del núcleo)</td>
+          <td>Alto, E muy alta</td>
+          <td>PET, radioterapia de alta energía</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════════════════════════════
+       BLOQUE 4 · DOSIMETRÍA
+  ══════════════════════════════════════ -->
+  <div class="section-title">
+    <div class="num">4</div>
+    DOSIMETRÍA
+  </div>
+
+  <div class="grid-3">
+
+    <div class="card card-red">
+      <h3>Pregunta 1</h3>
+      <span class="q-label">[ EL GRAY ]</span>
+      <p class="q-text">¿Qué representa físicamente un Gray?</p>
+      <div class="eq-box">1 Gy = 1 J / kg</div>
+      <div class="answer">
+        Un <b>Gray (Gy)</b> representa la absorción de <b>1 Joule de energía</b> de radiación ionizante por cada <b>kilogramo de material biológico</b>.<br><br>
+        Es la unidad de <i>dosis absorbida</i> según el SI. A diferencia del Sievert (que pondera el tipo de radiación), el Gray es puramente energético: mide cuánta energía deposita la radiación en el tejido.
+      </div>
+    </div>
+
+    <div class="card card-orange">
+      <h3>Pregunta 2</h3>
+      <span class="q-label">[ RADIOTERAPIA ]</span>
+      <p class="q-text">¿Por qué la dosis absorbida es importante en radioterapia?</p>
+      <div class="answer">
+        En radioterapia el objetivo es <b>depositar dosis letal en el tumor</b> (típicamente 50–80 Gy en fraccionamiento) mientras se minimiza la dosis en tejido sano circundante.<br><br>
+        <b>Dosis insuficiente</b> → tumor sobrevive. <b>Dosis excesiva</b> → daño a órganos sanos (radionecrosis, fibrosis). El control preciso de la dosis es lo que diferencia la radioterapia de una irradiación incontrolada.
+      </div>
+      <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:8px">
+        <span class="chip-red">Tumor: ~60–80 Gy</span>
+        <span class="chip">Médula: &lt;45 Gy</span>
+        <span class="chip-orange">Pulmón: &lt;20 Gy</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Pregunta 3</h3>
+      <span class="q-label">[ ENERGÍA vs. DAÑO BIOLÓGICO ]</span>
+      <p class="q-text">¿Qué relación existe entre energía absorbida y daño biológico?</p>
+      <div class="answer">
+        Mayor energía absorbida implica mayor número de <b>ionizaciones en tejido</b>, lo que produce:<br><br>
+        <b>1.</b> Ruptura directa del ADN (cadena simple o doble).<br>
+        <b>2.</b> Radiolisis del agua → radicales libres (·OH) que dañan proteínas y membranas.<br>
+        <b>3.</b> Disfunción mitocondrial y apoptosis celular.<br><br>
+        La relación no es siempre lineal: existe el modelo <b>LQ (lineal-cuadrático)</b> que describe la sobrevida celular en función de la dosis.
+      </div>
+      <div class="eq-box" style="font-size:13px">SF = e^(−αD − βD²)</div>
+      <div style="font-size:11px; color:var(--text-dim); text-align:center">SF: fracción superviviente · D: dosis</div>
+    </div>
+
+  </div>
+
+  <!-- Resumen de unidades -->
+  <div class="wide-card">
+    <h3 style="font-family:'Orbitron',sans-serif; font-size:11px; color:var(--teal); letter-spacing:3px; text-transform:uppercase; margin-bottom:14px;">Resumen de Ecuaciones Clave</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px,1fr)); gap:12px;">
+      <div style="text-align:center;">
+        <div class="eq-box">E = h · f</div>
+        <div style="font-size:12px; color:var(--text-dim)">Energía del fotón</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="eq-box">E = hc / λ</div>
+        <div style="font-size:12px; color:var(--text-dim)">Fotón ↔ longitud de onda</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="eq-box">I = I₀ · e⁻ᵘˣ</div>
+        <div style="font-size:12px; color:var(--text-dim)">Atenuación exponencial</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="eq-box">HVL = ln2 / μ</div>
+        <div style="font-size:12px; color:var(--text-dim)">Capa hemirreductora</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="eq-box">D = E / m</div>
+        <div style="font-size:12px; color:var(--text-dim)">Dosis absorbida (Gray)</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="eq-box">Ec = hf − Φ</div>
+        <div style="font-size:12px; color:var(--text-dim)">Efecto fotoeléctrico</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<footer>
+  <span>FÍSICA DE LA RADIACIÓN · PARTE A · ANÁLISIS CONCEPTUAL</span>
+  <span style="color:var(--green)">INFOGRAFÍA 1/2</span>
+  <span>h = 6.626 × 10⁻³⁴ J·s &nbsp;|&nbsp; c = 3 × 10⁸ m/s</span>
+</footer>
+
+</body>
+</html>

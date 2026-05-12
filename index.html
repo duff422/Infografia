@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radiografía Ósea – Infografía Científica</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+  <div class="h-icon">
+    <svg viewBox="0 0 60 60" width="50" height="50">
+      <!-- simplified bone SVG icon -->
+      <rect x="22" y="5" width="16" height="50" rx="5" fill="none" stroke="#00d4c8" stroke-width="2"/>
+      <ellipse cx="30" cy="10" rx="12" ry="8" fill="rgba(0,212,200,0.15)" stroke="#00d4c8" stroke-width="1.5"/>
+      <ellipse cx="30" cy="50" rx="12" ry="8" fill="rgba(0,212,200,0.15)" stroke="#00d4c8" stroke-width="1.5"/>
+      <line x1="22" y1="22" x2="38" y2="22" stroke="#00d4c8" stroke-width="0.8" stroke-dasharray="3,2"/>
+      <line x1="22" y1="30" x2="38" y2="30" stroke="#00d4c8" stroke-width="0.8" stroke-dasharray="3,2"/>
+      <line x1="22" y1="38" x2="38" y2="38" stroke="#00d4c8" stroke-width="0.8" stroke-dasharray="3,2"/>
+    </svg>
+  </div>
+  <div class="h-body">
+    <div class="h-super">Parte B · Caso Aplicativo · Física de la Radiación</div>
+    <div class="h-title">Radiografía <span>Ósea</span></div>
+    <div class="h-sub">Cómo los Rayos X revelan el esqueleto humano</div>
+  </div>
+  <div class="h-right">
+    <div class="h-badge">INFOGRAFÍA 2 / 2</div><br>
+    <span style="font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--text-dim)">APLICACIÓN BIOMÉDICA<br>DIAGNÓSTICO POR IMAGEN</span>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- ════════════════════════════════════
+       ROW 1: TIPO DE RADIACIÓN + ESQUEMA CENTRAL
+  ════════════════════════════════════ -->
+  <div class="g-hero">
+
+    <!-- RADIACIÓN y TIPO -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+
+      <div class="sec-label"><div class="num-badge">①</div>TIPO DE RADIACIÓN UTILIZADA</div>
+
+      <div class="card" style="flex:1;">
+        <h4>Rayos X – Características Físicas</h4>
+        <div class="body-text">
+          La radiografía ósea utiliza <b>radiación electromagnética</b> de alta energía denominada <b>Rayos X</b>, producidos cuando electrones acelerados impactan un ánodo metálico (generalmente tungsteno).<br><br>
+          Los fotones emitidos tienen una distribución espectral continua (<i>Bremsstrahlung</i>) más picos discretos característicos del material del ánodo.
+        </div>
+        <div class="g2" style="margin-top:12px; gap:10px;">
+          <div class="stat">
+            <div class="stat-num">20–150</div>
+            <span class="stat-unit">keV</span>
+            <div class="stat-label">Rango energético diagnóstico</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">10⁻¹⁰</div>
+            <span class="stat-unit">metros (λ)</span>
+            <div class="stat-label">Longitud de onda ≈ 0.01–10 nm</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;">
+          <div class="chip chip-r">IONIZANTE</div>
+          <div class="chip chip-c">Radiación EM</div>
+          <div class="chip chip-g">Alta frecuencia ≈ 10¹⁷–10¹⁸ Hz</div>
+        </div>
+      </div>
+
+      <!-- Ecuaciones -->
+      <div class="card gold">
+        <h4>Ecuaciones Relevantes</h4>
+        <div class="eq">E = h · f = hc / λ</div>
+        <div style="font-size:12px; color:var(--text-dim); text-align:center; margin-bottom:8px">Energía del fotón de rayos X</div>
+        <div class="eq sm">I(x) = I₀ · e⁻ᵘˣ</div>
+        <div style="font-size:12px; color:var(--text-dim); text-align:center; margin-bottom:8px">Atenuación en los tejidos</div>
+        <div class="eq sm">D = E / m &nbsp;[Gy = J/kg]</div>
+        <div style="font-size:12px; color:var(--text-dim); text-align:center; margin-bottom:8px">Dosis absorbida en paciente</div>
+        <div class="eq sm">HVL = ln(2) / μ</div>
+        <div style="font-size:12px; color:var(--text-dim); text-align:center">Capa hemirreductora</div>
+      </div>
+    </div>
+
+    <!-- ESQUEMA SVG CENTRAL (X-ray machine + body + film) -->
+    <div>
+      <div class="sec-label"><div class="num-badge">②</div>ESQUEMA DEL PROCESO</div>
+      <div class="card" style="padding:16px;">
+        <h4>Principio de la Radiografía Ósea</h4>
+        <svg viewBox="0 0 380 480" style="width:100%;" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#0a2030;stop-opacity:1"/>
+              <stop offset="50%" style="stop-color:#0d2a40;stop-opacity:1"/>
+              <stop offset="100%" style="stop-color:#0a2030;stop-opacity:1"/>
+            </linearGradient>
+            <radialGradient id="beamRad" cx="50%" cy="0%" r="70%">
+              <stop offset="0%" style="stop-color:#00d4c8;stop-opacity:0.7"/>
+              <stop offset="100%" style="stop-color:#00d4c8;stop-opacity:0"/>
+            </radialGradient>
+            <marker id="darr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#00d4c8" opacity="0.7"/>
+            </marker>
+          </defs>
+
+          <!-- X-ray tube housing -->
+          <rect x="120" y="8" width="140" height="52" rx="8" fill="#0d2540" stroke="#00d4c8" stroke-width="1.5"/>
+          <rect x="138" y="18" width="104" height="30" rx="4" fill="#091820" stroke="#007a74" stroke-width="1"/>
+          <!-- filament symbol -->
+          <path d="M170,28 Q180,22 190,28 Q200,34 210,28" fill="none" stroke="#f5c518" stroke-width="2"/>
+          <!-- anode -->
+          <rect x="212" y="22" width="16" height="22" rx="3" fill="#4a3000" stroke="#f07b00" stroke-width="1.2"/>
+          <text x="219" y="36" text-anchor="middle" fill="#f07b00" font-size="7" font-family="Share Tech Mono">W</text>
+          <!-- label tube -->
+          <text x="190" y="6" text-anchor="middle" fill="#7aadca" font-size="10" font-family="Share Tech Mono">TUBO DE RAYOS X</text>
+          <text x="155" y="40" fill="#7aadca" font-size="8" font-family="Share Tech Mono">filamento</text>
+          <text x="210" y="55" fill="#f07b00" font-size="8" font-family="Share Tech Mono">ánodo W</text>
+          <!-- collimator -->
+          <rect x="150" y="60" width="80" height="14" rx="2" fill="#0d2540" stroke="#00d4c8" stroke-width="1"/>
+          <text x="190" y="70" text-anchor="middle" fill="#7aadca" font-size="9" font-family="Share Tech Mono">COLIMADOR</text>
+
+          <!-- X-ray beam (fan) -->
+          <polygon points="190,74 130,220 250,220" fill="url(#beamRad)" opacity="0.45"/>
+          <!-- beam lines -->
+          <line x1="190" y1="74" x2="160" y2="220" stroke="#00d4c8" stroke-width="1" opacity="0.4" stroke-dasharray="5,4"/>
+          <line x1="190" y1="74" x2="190" y2="220" stroke="#00d4c8" stroke-width="1.5" opacity="0.6" stroke-dasharray="5,4"/>
+          <line x1="190" y1="74" x2="220" y2="220" stroke="#00d4c8" stroke-width="1" opacity="0.4" stroke-dasharray="5,4"/>
+          <text x="240" y="155" fill="#00d4c8" font-size="9" font-family="Share Tech Mono">Rayos X</text>
+
+          <!-- BODY silhouette (torso/arm) -->
+          <ellipse cx="190" cy="185" rx="48" ry="65" fill="url(#bodyGrad)" stroke="#1e4a6a" stroke-width="1.5"/>
+          <!-- skin layer label -->
+          <line x1="238" y1="175" x2="270" y2="155" stroke="#7aadca" stroke-width="0.8"/>
+          <text x="272" y="152" fill="#7aadca" font-size="9" font-family="Share Tech Mono">tejido blando</text>
+          <!-- bone (forearm cross-section simplified) -->
+          <ellipse cx="190" cy="185" rx="18" ry="48" fill="#1a3a52" stroke="#a0c8e0" stroke-width="1.2"/>
+          <!-- cortical bone -->
+          <ellipse cx="190" cy="185" rx="18" ry="48" fill="none" stroke="#c8e8f8" stroke-width="2.5"/>
+          <!-- medullary cavity -->
+          <ellipse cx="190" cy="185" rx="9" ry="36" fill="#0d1e2a" stroke="#4a7a9a" stroke-width="0.8"/>
+          <text x="190" y="188" text-anchor="middle" fill="#a0c8e0" font-size="8" font-family="Share Tech Mono">HUESO</text>
+          <line x1="208" y1="165" x2="270" y2="125" stroke="#a0c8e0" stroke-width="0.8"/>
+          <text x="272" y="122" fill="#c8e8f8" font-size="9" font-family="Share Tech Mono">hueso cortical</text>
+          <line x1="199" y1="175" x2="270" y2="105" stroke="#4a7a9a" stroke-width="0.8"/>
+          <text x="272" y="102" fill="#7aadca" font-size="9" font-family="Share Tech Mono">cavidad medular</text>
+
+          <!-- attenuation labels -->
+          <text x="96" y="195" fill="#00d4c8" font-size="8" font-family="Share Tech Mono" text-anchor="middle">μ tejido</text>
+          <text x="96" y="205" fill="#00d4c8" font-size="8" font-family="Share Tech Mono" text-anchor="middle">~ 0.2 cm⁻¹</text>
+          <text x="96" y="148" fill="#7aadca" font-size="8" font-family="Share Tech Mono" text-anchor="middle">mayor paso</text>
+          <text x="284" y="195" fill="#e83a3a" font-size="8" font-family="Share Tech Mono" text-anchor="middle">μ hueso</text>
+          <text x="284" y="205" fill="#e83a3a" font-size="8" font-family="Share Tech Mono" text-anchor="middle">~ 3 cm⁻¹</text>
+          <text x="284" y="148" fill="#e83a3a" font-size="8" font-family="Share Tech Mono" text-anchor="middle">menor paso</text>
+
+          <!-- transmitted beams (after body) -->
+          <!-- through soft tissue (more) -->
+          <line x1="160" y1="250" x2="145" y2="350" stroke="#00d4c8" stroke-width="1.5" opacity="0.8" marker-end="url(#darr)"/>
+          <line x1="220" y1="250" x2="235" y2="350" stroke="#00d4c8" stroke-width="1.5" opacity="0.8" marker-end="url(#darr)"/>
+          <!-- through bone (less) -->
+          <line x1="185" y1="250" x2="183" y2="350" stroke="#00d4c8" stroke-width="0.6" opacity="0.35" marker-end="url(#darr)"/>
+          <line x1="195" y1="250" x2="197" y2="350" stroke="#00d4c8" stroke-width="0.6" opacity="0.35" marker-end="url(#darr)"/>
+
+          <!-- DETECTOR / FILM -->
+          <rect x="115" y="355" width="150" height="18" rx="3" fill="#10181f" stroke="#00d4c8" stroke-width="1"/>
+          <text x="190" y="368" text-anchor="middle" fill="#00d4c8" font-size="9" font-family="Share Tech Mono">DETECTOR / PELÍCULA</text>
+          <!-- image on film -->
+          <rect x="115" y="373" width="150" height="40" rx="3" fill="#050e15" stroke="#007a74" stroke-width="1"/>
+          <!-- dark zones (soft tissue - more photons) -->
+          <rect x="117" y="375" width="40" height="36" rx="2" fill="#111" opacity="0.9"/>
+          <rect x="211" y="375" width="52" height="36" rx="2" fill="#111" opacity="0.9"/>
+          <!-- bright zone (bone - fewer photons) -->
+          <rect x="157" y="375" width="54" height="36" rx="2" fill="#c8d8e8" opacity="0.85"/>
+          <text x="184" y="398" text-anchor="middle" fill="#333" font-size="8" font-family="Share Tech Mono">BLANCO</text>
+          <text x="136" y="398" text-anchor="middle" fill="#666" font-size="7" font-family="Share Tech Mono">oscuro</text>
+          <text x="238" y="398" text-anchor="middle" fill="#666" font-size="7" font-family="Share Tech Mono">oscuro</text>
+          <text x="190" y="422" text-anchor="middle" fill="#7aadca" font-size="9" font-family="Share Tech Mono">Imagen radiográfica resultante</text>
+
+          <!-- legend -->
+          <rect x="10" y="440" width="10" height="10" fill="#c8d8e8" rx="1"/>
+          <text x="24" y="450" fill="#7aadca" font-size="8" font-family="Share Tech Mono">Hueso (blanco): alta atenuación</text>
+          <rect x="10" y="458" width="10" height="10" fill="#111" rx="1" stroke="#444" stroke-width="0.5"/>
+          <text x="24" y="468" fill="#7aadca" font-size="8" font-family="Share Tech Mono">Tejido (oscuro): baja atenuación</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <!-- ════════════════════════════════════
+       ROW 2: INTERACCIÓN DOMINANTE + APLICACIÓN
+  ════════════════════════════════════ -->
+  <div class="sec-label lime"><div class="num-badge lime">③</div>MECANISMO DE INTERACCIÓN DOMINANTE</div>
+
+  <div class="g3" style="margin-bottom:18px;">
+    <div class="card lime">
+      <h4>Efecto Fotoeléctrico (dominante)</h4>
+      <svg viewBox="0 0 180 100" style="width:100%; margin-bottom:8px">
+        <circle cx="88" cy="50" r="12" fill="#0a1e30" stroke="#94d832" stroke-width="1.5"/>
+        <text x="88" y="54" text-anchor="middle" fill="#94d832" font-size="8" font-family="Share Tech Mono">Ca</text>
+        <ellipse cx="88" cy="50" rx="34" ry="20" fill="none" stroke="#7aadca" stroke-width="0.8" stroke-dasharray="3,2" transform="rotate(-15,88,50)"/>
+        <ellipse cx="88" cy="50" rx="50" ry="26" fill="none" stroke="#7aadca" stroke-width="0.8" stroke-dasharray="3,2" transform="rotate(20,88,50)"/>
+        <line x1="8" y1="50" x2="50" y2="50" stroke="#f5c518" stroke-width="1.8" stroke-dasharray="4,3" marker-end="url(#ay)"/>
+        <text x="22" y="44" fill="#f5c518" font-size="7" font-family="Share Tech Mono">hf (X)</text>
+        <circle cx="152" cy="22" r="5" fill="#e83a3a"/>
+        <line x1="72" y1="36" x2="147" y2="24" stroke="#e83a3a" stroke-width="1.3" marker-end="url(#ar)"/>
+        <text x="144" y="14" fill="#e83a3a" font-size="7" font-family="Share Tech Mono">e⁻</text>
+        <text x="88" y="92" text-anchor="middle" fill="#7aadca" font-size="8" font-family="Share Tech Mono">Fotón absorbido completamente</text>
+        <defs>
+          <marker id="ay" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#f5c518"/></marker>
+          <marker id="ar" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto"><path d="M0,0 L5,2.5 L0,5 Z" fill="#e83a3a"/></marker>
+        </defs>
+      </svg>
+      <div class="body-text lime" style="font-size:13px;">
+        En el rango diagnóstico (20–80 keV), el <b>efecto fotoeléctrico</b> domina en el hueso (Ca, Z=20). El fotón es absorbido totalmente por un electrón de capa interna, generando el contraste imagen hueso/tejido. La probabilidad escala con <b>Z³/E³</b>.
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>Dispersión Compton (secundaria)</h4>
+      <div class="body-text" style="font-size:13px;">
+        También ocurre <b>dispersión Compton</b>, especialmente en tejidos blandos. Los fotones dispersados generan "ruido" de fondo en la imagen. Para reducirlo se emplean <b>grillas antidispersión</b> entre el paciente y el detector, que absorben fotones no colineales.<br><br>
+        <span class="chip chip-c">Tejido blando</span><span class="chip chip-g">Mayor contribución Compton</span>
+      </div>
+      <!-- Dominance graph -->
+      <svg viewBox="0 0 180 90" style="width:100%; margin-top:10px">
+        <text x="90" y="12" text-anchor="middle" fill="#7aadca" font-size="8" font-family="Share Tech Mono">Dominancia vs. Energía (hueso)</text>
+        <line x1="20" y1="75" x2="170" y2="75" stroke="#7aadca" stroke-width="1"/>
+        <line x1="20" y1="20" x2="20" y2="75" stroke="#7aadca" stroke-width="1"/>
+        <text x="90" y="85" text-anchor="middle" fill="#7aadca" font-size="7" font-family="Share Tech Mono">Energía (keV)</text>
+        <!-- Photoelectric curve -->
+        <path d="M25,22 C40,22 65,38 100,60 L160,72" fill="none" stroke="#94d832" stroke-width="1.5"/>
+        <text x="30" y="30" fill="#94d832" font-size="7" font-family="Share Tech Mono">fotoeléctrico</text>
+        <!-- Compton curve -->
+        <path d="M25,68 C60,65 100,50 160,35" fill="none" stroke="#00d4c8" stroke-width="1.5"/>
+        <text x="110" y="32" fill="#00d4c8" font-size="7" font-family="Share Tech Mono">Compton</text>
+        <!-- intersection marker -->
+        <circle cx="110" cy="56" r="3" fill="#f5c518"/>
+        <text x="112" y="50" fill="#f5c518" font-size="7" font-family="Share Tech Mono">~80keV</text>
+        <text x="35" y="74" fill="#7aadca" font-size="7" font-family="Share Tech Mono">20</text>
+        <text x="95" y="74" fill="#7aadca" font-size="7" font-family="Share Tech Mono">80</text>
+        <text x="150" y="74" fill="#7aadca" font-size="7" font-family="Share Tech Mono">150</text>
+      </svg>
+    </div>
+
+    <div class="card gold">
+      <h4>Parámetros de Atenuación Ósea</h4>
+      <table class="tbl" style="font-size:12px;">
+        <thead>
+          <tr><th>Material</th><th>μ (cm⁻¹)*</th><th>HVL</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hueso cortical</td>
+            <td style="color:var(--red)">~3.0</td>
+            <td>0.23 cm</td>
+          </tr>
+          <tr>
+            <td>Hueso esponjoso</td>
+            <td style="color:var(--orange)">~1.5</td>
+            <td>0.46 cm</td>
+          </tr>
+          <tr>
+            <td>Músculo</td>
+            <td style="color:var(--cyan)">~0.20</td>
+            <td>3.5 cm</td>
+          </tr>
+          <tr>
+            <td>Grasa</td>
+            <td style="color:var(--lime)">~0.18</td>
+            <td>3.9 cm</td>
+          </tr>
+          <tr>
+            <td>Pulmón</td>
+            <td style="color:var(--lime)">~0.04</td>
+            <td>17 cm</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:10px; color:var(--text-dim); margin-top:6px">*Valores aproximados a ~70 keV</div>
+      <div class="eq sm" style="margin-top:10px">μ_hueso / μ_tejido ≈ 15 ×</div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <!-- ════════════════════════════════════
+       ROW 3: APLICACIÓN BIOMÉDICA
+  ════════════════════════════════════ -->
+  <div class="sec-label orange"><div class="num-badge orange">④</div>APLICACIÓN BIOMÉDICA</div>
+
+  <div class="g-info">
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div class="card orange">
+        <h4>Diagnóstico Clínico</h4>
+        <div class="body-text" style="font-size:13px;">
+          La radiografía ósea es la técnica de imagen más utilizada en ortopedia y traumatología. Permite visualizar estructuras óseas con alta resolución y en tiempo real con dosis mínimas al paciente.
+        </div>
+      </div>
+      <div class="card" style="flex:1;">
+        <h4>Indicaciones Principales</h4>
+        <div class="info-row"><div class="info-dot orange"></div><div class="body-text" style="font-size:13px;"><b>Fracturas y fisuras</b> – identificación de líneas de fractura, fragmentos y alineación.</div></div>
+        <div class="info-row"><div class="info-dot orange"></div><div class="body-text" style="font-size:13px;"><b>Osteoporosis</b> – reducción de densidad mineral ósea visible como mayor translucidez.</div></div>
+        <div class="info-row"><div class="info-dot orange"></div><div class="body-text" style="font-size:13px;"><b>Artritis y artropatías</b> – pérdida de espacio articular, erosiones, osteofitos.</div></div>
+        <div class="info-row"><div class="info-dot orange"></div><div class="body-text" style="font-size:13px;"><b>Tumores óseos</b> – lesiones líticas o escleróticas, reacción perióstica.</div></div>
+        <div class="info-row"><div class="info-dot orange"></div><div class="body-text" style="font-size:13px;"><b>Deformidades esqueléticas</b> – escoliosis, displasias, crecimiento infantil.</div></div>
+        <div class="info-row"><div class="info-dot orange"></div><div class="body-text" style="font-size:13px;"><b>Seguimiento postquirúrgico</b> – posición de implantes, consolidación de fracturas.</div></div>
+      </div>
+    </div>
+
+    <!-- PROCESO técnico -->
+    <div class="card" style="padding:20px;">
+      <h4>Proceso Técnico Paso a Paso</h4>
+
+      <!-- Steps flow -->
+      <div style="display:flex; flex-direction:column; gap:0;">
+        <div style="display:flex; gap:14px; align-items:flex-start; margin-bottom:10px;">
+          <div style="background:var(--cyan);color:#030a10;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:900;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">1</div>
+          <div><b style="color:var(--cyan);font-size:13px;">Generación del haz</b><br><span style="font-size:12px;color:var(--text-dim)">El tubo de RX acelera e⁻ (40–150 kVp) hacia el ánodo de tungsteno. Bremsstrahlung produce fotones X policromaticos.</span></div>
+        </div>
+        <div style="border-left:1px dashed var(--cyan-dim);margin-left:14px;height:10px;"></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; margin-bottom:10px;">
+          <div style="background:var(--lime);color:#030a10;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:900;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">2</div>
+          <div><b style="color:var(--lime);font-size:13px;">Colimación y filtrado</b><br><span style="font-size:12px;color:var(--text-dim)">El colimador delimita el campo irradiado. Filtros de Al/Cu eliminan fotones de baja energía que no contribuyen a la imagen.</span></div>
+        </div>
+        <div style="border-left:1px dashed var(--lime);margin-left:14px;height:10px;"></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; margin-bottom:10px;">
+          <div style="background:var(--gold);color:#030a10;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:900;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">3</div>
+          <div><b style="color:var(--gold);font-size:13px;">Atenuación diferencial</b><br><span style="font-size:12px;color:var(--text-dim)">El haz atraviesa el cuerpo. Hueso atenúa ~15× más que tejido blando por su alto contenido de Ca (Z=20). I(x)=I₀e⁻ᵘˣ</span></div>
+        </div>
+        <div style="border-left:1px dashed var(--gold);margin-left:14px;height:10px;"></div>
+        <div style="display:flex; gap:14px; align-items:flex-start; margin-bottom:10px;">
+          <div style="background:var(--orange);color:#030a10;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:900;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">4</div>
+          <div><b style="color:var(--orange);font-size:13px;">Detección</b><br><span style="font-size:12px;color:var(--text-dim)">El detector digital (FPD) o la película convierte la intensidad espacial de fotones en señal electrónica/óptica proporcional.</span></div>
+        </div>
+        <div style="border-left:1px dashed var(--orange);margin-left:14px;height:10px;"></div>
+        <div style="display:flex; gap:14px; align-items:flex-start;">
+          <div style="background:var(--red);color:#fff;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:900;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">5</div>
+          <div><b style="color:var(--red);font-size:13px;">Imagen diagnóstica</b><br><span style="font-size:12px;color:var(--text-dim)">El procesado digital genera imagen en escala de grises donde el hueso aparece blanco (alta atenuación) y el tejido oscuro.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <!-- ════════════════════════════════════
+       ROW 4: RIESGOS Y VENTAJAS
+  ════════════════════════════════════ -->
+  <div class="sec-label red"><div class="num-badge red">⑤</div>RIESGOS BIOLÓGICOS Y VENTAJAS</div>
+
+  <div class="g2" style="margin-bottom:18px;">
+
+    <!-- Dosimetría y riesgos -->
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div class="card red">
+        <h4>Dosis Típicas en Radiografía Ósea</h4>
+        <table class="tbl" style="font-size:12px;">
+          <thead>
+            <tr><th>Región</th><th>Dosis efectiva</th><th>Equiv. fondo natural</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Mano / pie</td><td style="color:var(--lime)">~0.001 mSv</td><td>3 horas</td></tr>
+            <tr><td>Tórax (PA)</td><td style="color:var(--lime)">~0.02 mSv</td><td>2–3 días</td></tr>
+            <tr><td>Columna lumbar</td><td style="color:var(--gold)">~1.3 mSv</td><td>4–5 meses</td></tr>
+            <tr><td>Pelvis / cadera</td><td style="color:var(--gold)">~0.7 mSv</td><td>2–3 meses</td></tr>
+            <tr><td>Cráneo</td><td style="color:var(--cyan)">~0.07 mSv</td><td>9 días</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:10px; font-size:12px; color:var(--text-dim)">
+          Dosis de radiación de fondo natural: ~2.4 mSv/año. Una placa ósea simple representa una fracción muy pequeña.
+        </div>
+      </div>
+
+      <div class="card">
+        <h4>Mecanismos de Daño Biológico</h4>
+        <div class="info-row"><div class="info-dot red"></div><div class="body-text red" style="font-size:13px;"><b>Daño directo al ADN</b>: ionizaciones producen roturas de cadena simple o doble.</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div class="body-text red" style="font-size:13px;"><b>Radicales libres</b>: radiolisis del agua genera ·OH que dañan macromoléculas.</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div class="body-text red" style="font-size:13px;"><b>Riesgo estocástico</b>: pequeña probabilidad de inducir mutación carcinogénica proporcional a la dosis.</div></div>
+        <div class="info-row"><div class="info-dot red"></div><div class="body-text red" style="font-size:13px;"><b>Cataratas</b>: el cristalino es especialmente radiosensible (&gt;0.5 Gy umbral).</div></div>
+        <div style="margin-top:10px">
+          <span class="chip chip-r">Tejidos radiosensibles: médula, gónadas, cristalino, tiroides</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ventajas y desventajas -->
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <div class="pro-con" style="flex:1;">
+        <div class="pros">
+          <h5>✔ VENTAJAS</h5>
+          <div class="pro-item">Acceso inmediato: equipo disponible en cualquier centro médico.</div>
+          <div class="pro-item">Bajo costo comparado con TAC, RMN o PET.</div>
+          <div class="pro-item">Alta resolución espacial del hueso cortical.</div>
+          <div class="pro-item">Tiempo de adquisición: fracción de segundo.</div>
+          <div class="pro-item">Dosis bajas (especialmente extremidades).</div>
+          <div class="pro-item">Permite evaluar implantes metálicos.</div>
+          <div class="pro-item">Técnica no invasiva.</div>
+        </div>
+        <div class="cons">
+          <h5>✕ RIESGOS / LIMITACIONES</h5>
+          <div class="con-item">Radiación ionizante (riesgo estocástico de cáncer con exposición repetida).</div>
+          <div class="con-item">Contraindicado en embarazo (especialmente pelvis/abdomen).</div>
+          <div class="con-item">Imagen 2D: superposición de estructuras.</div>
+          <div class="con-item">Baja sensibilidad para tejidos blandos.</div>
+          <div class="con-item">No detecta lesiones óseas tempranas (&lt;30% pérdida mineral).</div>
+          <div class="con-item">Ruido por dispersión Compton en regiones densas.</div>
+        </div>
+      </div>
+
+      <!-- Comparison with other modalities -->
+      <div class="card violet">
+        <h4>Comparación con Otras Modalidades de Imagen Ósea</h4>
+        <table class="tbl" style="font-size:12px;">
+          <thead>
+            <tr><th>Modalidad</th><th>Radiación</th><th>Dosis</th><th>Hueso</th><th>Tejido blando</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="color:var(--cyan); font-weight:700">Radiografía X</td><td>Rayos X</td><td>Baja</td><td style="color:var(--lime)">Excelente</td><td style="color:var(--red)">Pobre</td></tr>
+            <tr><td style="color:var(--gold)">TAC</td><td>Rayos X</td><td>Media-alta</td><td style="color:var(--lime)">Excelente</td><td style="color:var(--gold)">Buena</td></tr>
+            <tr><td style="color:var(--lime)">RMN</td><td>No ionizante</td><td>Ninguna</td><td style="color:var(--gold)">Regular</td><td style="color:var(--lime)">Excelente</td></tr>
+            <tr><td style="color:var(--orange)">Gammagrafía</td><td>γ (trazador)</td><td>Media</td><td style="color:var(--lime)">Funcional</td><td style="color:var(--red)">No</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="div"></div>
+
+  <!-- ════════════════════════════════════
+       ROW 5: CONCLUSIÓN
+  ════════════════════════════════════ -->
+  <div class="sec-label"><div class="num-badge">⑥</div>CONCLUSIÓN</div>
+
+  <div class="conclusion">
+    <h4>Síntesis – Radiografía Ósea y Física de la Radiación</h4>
+    <p>
+      La radiografía ósea es el ejemplo clínico más directo de la interacción entre <b>radiación ionizante y materia biológica</b>. Los fotones de rayos X, con energías de 20 a 150 keV, atraviesan el cuerpo humano experimentando principalmente <b>efecto fotoeléctrico</b> en el tejido óseo (rico en calcio, Z = 20), lo que genera un contraste diferencial descrito por la ley <span class="eq-inline">I(x) = I₀e⁻ᵘˣ</span>. El hueso atenúa aproximadamente 15 veces más que el tejido blando, formando una imagen en la que las estructuras óseas aparecen blancas y los tejidos blandos oscuros.<br><br>
+      Esta técnica, aunque emite <b>radiación ionizante</b> con capacidad de dañar el ADN por ruptura de cadenas y generación de radicales libres, mantiene dosis diagnósticas muy inferiores al umbral de efectos deterministas, y el beneficio diagnóstico supera ampliamente el riesgo estocástico. El correcto entendimiento de la física subyacente —desde la energía del fotón hasta los coeficientes de atenuación de cada tejido— es fundamental para optimizar la calidad diagnóstica, <b>minimizar la dosis al paciente</b> y garantizar el uso seguro y eficaz de los equipos de radiología en la práctica clínica moderna.
+    </p>
+  </div>
+
+  <!-- Bottom stats row -->
+  <div class="g4">
+    <div class="stat">
+      <div class="stat-num" style="color:var(--cyan); font-size:22px">6.626</div>
+      <span class="stat-unit">× 10⁻³⁴ J·s</span>
+      <div class="stat-label">Constante de Planck (h)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" style="color:var(--lime); font-size:22px">3×10⁸</div>
+      <span class="stat-unit">m/s</span>
+      <div class="stat-label">Velocidad de la luz (c)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" style="color:var(--gold)">Z=20</div>
+      <span class="stat-unit">Calcio</span>
+      <div class="stat-label">Elemento dominante del hueso</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num" style="color:var(--orange); font-size:22px">≈1 ms</div>
+      <span class="stat-unit">exposición</span>
+      <div class="stat-label">Tiempo de adquisición típico</div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<footer>
+  <span>FÍSICA DE LA RADIACIÓN · PARTE B · RADIOGRAFÍA ÓSEA</span>
+  <span style="color:var(--lime)">INFOGRAFÍA 2 / 2</span>
+  <span>E = hf · I = I₀e⁻ᵘˣ · D = E/m</span>
+</footer>
+
+</body>
+</html>
